@@ -537,10 +537,22 @@ form label {
 /* Form input fields */
 form input[type="text"],
 form input[type="date"],
-form textarea,
-.exercise-details select {
+form textarea {
     width: 100%;
     /* Full width */
+    padding: 10px;
+    /* Padding inside */
+    border: 1px solid #ddd;
+    /* Light gray border */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 1rem;
+    /* Normal font size */
+}
+
+.exercise-details select {
+    width: auto;
+    /* Auto width */
     padding: 10px;
     /* Padding inside */
     border: 1px solid #ddd;
@@ -1093,5 +1105,17 @@ footer p {
     .hero h2 {
         font-size: 1.8rem;
         /* Smaller font size */
+    }
+
+    @media (max-width: 768px) {
+        .exercise-details {
+            padding-left: 10px;
+            gap: 10px;
+        }
+
+        .exercise-item {
+            padding: 10px;
+            max-width: calc(100vw - 40px);
+        }
     }
 }

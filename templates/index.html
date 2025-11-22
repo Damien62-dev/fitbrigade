@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Home - FitBrigade{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to FitBrigade</h2>
+        <p>Plan, track, and optimize your workout routines</p>
+        <br>
+
+        <a href="/create" class="btn-primary btn-neon">Start Planning</a>
+    </div>
+</section>
+
+<br><br>
+
+<section class="features">
+    <h3>Why Use FitBrigade?</h3>
+    <br>
+    <div class="feature-grid">
+        <div class="feature">
+            <img src="{{ url_for('static', filename='images/plan.jpg') }}" alt="Plan workouts">
+            <div class="feature-content">
+                <h4>Plan your Workouts</h4>
+                <p>Create personalized workouts targeting specific muscle groups. Choose from a library of exercises,
+                    sets, and repetitions.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <img src="{{ url_for('static', filename='images/track.jpg') }}" alt="Track progress">
+            <div class="feature-content">
+                <h4>Track your Progress</h4>
+                <p>Keep a detailed record of all your training sessions.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <img src="{{ url_for('static', filename='images/stats.jpg') }}" alt="View stats">
+            <div class="feature-content">
+                <h4>View your Stats</h4>
+                <p>Analyze the muscle groups you train most frequently.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

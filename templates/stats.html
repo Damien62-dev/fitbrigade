@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Stats - FitBrigade{% endblock %}
+
+{% block content %}
+<h2>Workout Statistics</h2>
+<br>
+
+<div class="stats-summary">
+    <div class="stat-box">
+        <h3>{{ total_workouts }}</h3>
+        <p>Total Workouts</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ most_trained }}</h3>
+        <p>Most Trained Muscle</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ least_trained }}</h3>
+        <p>Least Trained Muscle</p>
+    </div>
+</div>
+<br><br>
+
+<h3>Muscle Group Frequency</h3>
+<br>
+<div class="stats-list">
+    {% for muscle, count in muscle_stats.items() %}
+    <div class="stat-row">
+        <span class="muscle-name">{{ muscle }}</span>
+        <span class="muscle-count">{{ count }} times</span>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

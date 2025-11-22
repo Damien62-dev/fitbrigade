@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Create Workout - FitBrigade{% endblock %}
+
+{% block content %}
+<h2>Create New Workout</h2>
+<br>
+<form method="POST" action="/create" id="workoutForm">
+    <label for="name">Workout Name</label>
+    <input type="text" id="name" name="name" required placeholder="e.g., Leg Day">
+    <br><br>
+
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date" required>
+    <br><br>
+
+    <fieldset>
+        <legend>Select Muscle Groups</legend>
+        <div class="muscle-grid">
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Quadriceps"
+                    onchange="toggleExercises('Quadriceps', event)">
+                Quadriceps
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Glutes" onchange="toggleExercises('Glutes', event)">
+                Glutes
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Back" onchange="toggleExercises('Back', event)">
+                Back
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Chest" onchange="toggleExercises('Chest', event)">
+                Chest
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Shoulders"
+                    onchange="toggleExercises('Shoulders', event)">
+                Shoulders
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Traps" onchange="toggleExercises('Traps', event)">
+                Traps
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Hamstrings"
+                    onchange="toggleExercises('Hamstrings', event)">
+                Hamstrings
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Biceps" onchange="toggleExercises('Biceps', event)">
+                Biceps
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Triceps"
+                    onchange="toggleExercises('Triceps', event)">
+                Triceps
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Forearms"
+                    onchange="toggleExercises('Forearms', event)">
+                Forearms
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Calves" onchange="toggleExercises('Calves', event)">
+                Calves
+            </label>
+            <label>
+                <input type="checkbox" name="muscle_groups" value="Abs" onchange="toggleExercises('Abs',event)">
+                Abs
+            </label>
+        </div>
+        <p id="muscleCount">0 muscle groups selected</p>
+    </fieldset>
+    <br>
+
+    {% for muscle, exercise_list in all_exercises.items() %}
+    <div id="exercises_{{ muscle }}" class="exercise-section" style="display: none;">
+        <fieldset>
+            <legend>Select Exercises for {{ muscle }}</legend>
+            <div class="exercise-list-detailed">
+                {% for exercise in exercise_list %}
+                <div class="exercise-item">
+                    <label class="exercise-checkbox">
+                        <input type="checkbox" name="exercises_{{ muscle }}" value="{{ exercise }}"
+                            onchange="toggleExerciseDetails('{{ muscle }}', '{{ exercise }}', event)">
+                        <strong>{{ exercise }}</strong>
+                    </label>
+                    <div id="details_{{ muscle }}_{{ exercise }}" class="exercise-details" style="display: none;">
+                        <label for="sets_{{ muscle }}_{{ exercise }}">Sets:</label>
+                        <select name="sets_{{ muscle }}_{{ exercise }}" id="sets_{{ muscle }}_{{ exercise }}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+
+                        <label for="reps_{{ muscle }}_{{ exercise }}">Reps:</label>
+                        <select name="reps_{{ muscle }}_{{ exercise }}" id="reps_{{ muscle }}_{{ exercise }}">
+                            <option value="1-3">1-3</option>
+                            <option value="4-6">4-6</option>
+                            <option value="6-8">6-8</option>
+                            <option value="8-10" selected>8-10</option>
+                            <option value="10-12">10-12</option>
+                            <option value="12-15">12-15</option>
+                            <option value="15-20">15-20</option>
+                            <option value="20+">20+</option>
+                        </select>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+        <br>
+    </div>
+    {% endfor %}
+
+    <label for="notes">Notes (optional)</label><br>
+    <textarea id="notes" name="notes" rows="4" placeholder="Add any notes about this workout..."></textarea>
+    <br><br>
+
+    <button type="submit" class="btn-primary">Save Workout</button>
+</form>
+{% endblock %}

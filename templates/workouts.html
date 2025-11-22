@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}My Workouts - FitBrigade{% endblock %}
+
+{% block content %}
+<div class="header-row">
+    <h2>My Workouts</h2>
+    <a href="/create" class="btn-primary">Create New Workout</a>
+</div>
+<br>
+
+{% if workouts %}
+<div class="workout-list">
+    {% for workout in workouts %}
+    <div class="workout-card">
+        <h3>{{ workout.name }}</h3>
+        <p class="date">{{ workout.date }}</p>
+        <div class="muscle-tags">
+            {% for muscle in workout.muscle_groups %}
+            <span class="tag">{{ muscle }}</span>
+            {% endfor %}
+        </div>
+        <div class="card-actions">
+            <a href="/workout/{{ workout.id }}" class="btn-secondary">View Details</a>
+            <a href="/delete/{{ workout.id }}" class="btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="empty-message">
+    <p>No workouts yet. Start by creating your first workout!</p>
+    <br>
+    <a href="/create" class="btn-primary">Create Workout</a>
+</div>
+
+{% endif %}
+{% endblock %}

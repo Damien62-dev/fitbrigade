@@ -1,0 +1,1097 @@
+/* CSS Variables - defines main colors to reuse throughout the stylesheet */
+:root {
+    --primary-color: #007bff;
+    /* Main blue color for buttons and links */
+    --secondary-color: #6c757d;
+    /* Gray color for secondary text */
+    --success-color: #28a745;
+    /* Green color for success messages */
+    --danger-color: #dc3545;
+    /* Red color for dangerous actions (delete buttons) */
+    --dark-color: #040404;
+    /* Almost black color for header and footer */
+    --light-bg: #f8f9fa;
+    /* Light gray background color */
+}
+
+/* Base - Basic body styling */
+body {
+    font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Main font family */
+    background-color: var(--light-bg);
+    /* Uses the light background color defined above */
+}
+
+/* All headings use the Oswald font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
+    /* Special font for headings */
+    font-weight: 700;
+    /* Bold text */
+    letter-spacing: 0.5px;
+    /* Space between letters */
+}
+
+/* Container - Centers the page content */
+.container {
+    width: 90%;
+    /* Takes 90% of screen width */
+    max-width: 1200px;
+    /* But never more than 1200px */
+    margin: 0 auto;
+    /* Centers the container horizontally */
+    padding: 0 20px;
+    /* 20px padding on left and right */
+}
+
+/* Header - Top banner of the page */
+header {
+    background-color: var(--dark-color);
+    /* Black background */
+    color: white;
+    /* White text */
+    padding: 20px 0;
+    /* Vertical padding top and bottom */
+    text-align: center;
+    /* Centers the text */
+}
+
+/* Title inside the header */
+header h1 {
+    margin: 0;
+    /* Removes default margin */
+    font-size: 2rem;
+    /* Font size 2rem */
+}
+
+/* Navigation - Menu bar */
+nav {
+    background-color: #1a1a1a;
+    /* Very dark gray background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    /* Drop shadow below nav */
+    border-bottom: 2px solid var(--primary-color);
+    /* Blue border at bottom */
+}
+
+/* Container inside the navigation */
+nav .container {
+    display: flex;
+    /* Uses flexbox to align elements */
+    justify-content: space-between;
+    /* Space between logo and links */
+    align-items: center;
+    /* Vertically centers items */
+    padding: 0;
+    /* No padding in this container */
+}
+
+/* Navigation list */
+nav ul {
+    list-style: none;
+    /* Removes bullet points */
+    padding: 0;
+    /* Removes padding */
+    margin: 0;
+    /* Removes margin */
+    display: flex;
+    /* Uses flexbox for horizontal layout */
+    gap: 0;
+    /* No gap between items */
+}
+
+/* Navigation links */
+nav ul a {
+    display: block;
+    /* Makes the whole area clickable */
+    padding: 20px 30px;
+    /* Padding inside each link */
+    text-decoration: none;
+    /* Removes underline */
+    color: #ffffff;
+    /* White text color */
+    transition: all 0.3s;
+    /* Smooth transition for hover effects */
+    font-weight: 500;
+    /* Medium font weight */
+    position: relative;
+    /* Needed for the ::after pseudo-element */
+}
+
+/* Animated underline effect on hover */
+nav ul a::after {
+    content: "";
+    /* Creates an empty element */
+    position: absolute;
+    /* Positioned relative to the link */
+    bottom: 0;
+    /* At the bottom of the link */
+    left: 50%;
+    /* Starts from center */
+    width: 0;
+    /* Starts with no width */
+    height: 3px;
+    /* 3px height */
+    background: var(--primary-color);
+    /* Blue color */
+    transition: width 0.3s ease, left 0.3s ease;
+    /* Animates width and position */
+}
+
+/* When hovering or link is active, underline expands */
+nav ul a:hover::after,
+nav ul a.active::after {
+    width: 100%;
+    /* Full width */
+    left: 0;
+    /* Starts from left edge */
+}
+
+/* Changes text color on hover or when active */
+nav ul a:hover,
+nav ul a.active {
+    color: var(--primary-color);
+    /* Changes to blue */
+}
+
+/* Logo in navigation */
+.nav-logo {
+    color: white;
+    /* White text */
+    font-size: 1.8rem;
+    /* Large font size */
+    font-weight: 700;
+    /* Bold */
+    padding: 20px 30px;
+    /* Same padding as nav links */
+    text-decoration: none;
+    /* No underline */
+    transition: none;
+    /* No transition effects */
+    font-family: 'Oswald', sans-serif;
+    /* Same font as headings */
+    letter-spacing: 2px;
+    /* Wide letter spacing */
+}
+
+/* Logo doesn't change on hover */
+.nav-logo:hover {
+    color: white;
+    /* Stays white on hover */
+    background: none;
+    /* No background on hover */
+}
+
+/* Burger Menu Button - for mobile navigation */
+.burger-menu {
+    display: none;
+    /* Hidden by default on desktop */
+    flex-direction: column;
+    /* Stacks the three lines vertically */
+    gap: 5px;
+    /* Space between the lines */
+    background: none;
+    /* No background */
+    border: none;
+    /* No border */
+    cursor: pointer;
+    /* Shows pointer cursor */
+    padding: 10px;
+    /* Padding around button */
+}
+
+/* Individual burger menu lines */
+.burger-menu span {
+    width: 25px;
+    /* Width of each line */
+    height: 3px;
+    /* Height of each line */
+    background-color: white;
+    /* White color */
+    transition: all 0.3s;
+    /* Smooth animation */
+}
+
+/* Animation when burger menu is open - turns into X */
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    /* Rotates first line */
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+    /* Hides middle line */
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+    /* Rotates third line */
+}
+
+/* Main - Main content area */
+main {
+    min-height: 70vh;
+    /* Minimum height is 70% of viewport height */
+    padding: 30px 0;
+    /* Vertical padding */
+}
+
+/* Hero - Large banner section on homepage */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/static/images/hero-bg.jpg');
+    /* Dark overlay over background image */
+    background-size: 70%;
+    /* Background image covers 70% */
+    background-position: center top;
+    /* Positioned at center top */
+    background-attachment: fixed;
+    /* Parallax effect */
+    padding: 120px 0;
+    /* Large vertical padding */
+    text-align: center;
+    /* Centers text */
+    color: white;
+    /* White text */
+}
+
+/* Hero heading */
+.hero h2 {
+    font-size: 3rem;
+    /* Large font size */
+    margin-bottom: 20px;
+    /* Space below */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    /* Dark shadow for readability */
+}
+
+/* Hero paragraph */
+.hero p {
+    font-size: 1.3rem;
+    /* Medium-large font */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    /* Text shadow */
+}
+
+/* Button styles - applies to all button types */
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+button.btn-primary,
+button.btn-secondary,
+button.btn-danger {
+    color: white;
+    /* White text */
+    padding: 12px 30px;
+    /* Padding inside button */
+    text-decoration: none;
+    /* No underline */
+    border-radius: 5px;
+    /* Rounded corners */
+    display: inline-block;
+    /* Allows padding and margin */
+    transition: all 0.3s;
+    /* Smooth transition */
+    border: none;
+    /* No border */
+    cursor: pointer;
+    /* Pointer cursor */
+    font-family: 'Barlow', sans-serif;
+    /* Main font */
+    font-weight: 600;
+    /* Semi-bold */
+}
+
+/* Primary button - main action button */
+.btn-primary,
+button.btn-primary {
+    background-color: var(--primary-color);
+    /* Blue background */
+}
+
+/* Primary button hover effect */
+.btn-primary:hover,
+button.btn-primary:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+    transform: translateY(-2px);
+    /* Moves up slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adds shadow */
+}
+
+/* Secondary button - less important actions */
+.btn-secondary,
+button.btn-secondary {
+    background-color: var(--secondary-color);
+    /* Gray background */
+    padding: 10px 20px;
+    /* Smaller padding */
+}
+
+/* Secondary button hover */
+.btn-secondary:hover,
+button.btn-secondary:hover {
+    background-color: #5a6268;
+    /* Darker gray */
+}
+
+/* Danger button - delete actions */
+.btn-danger,
+button.btn-danger {
+    background-color: var(--danger-color);
+    /* Red background */
+    padding: 10px 20px;
+    /* Smaller padding */
+}
+
+/* Danger button hover */
+.btn-danger:hover,
+button.btn-danger:hover {
+    background-color: #c82333;
+    /* Darker red */
+}
+
+/* Neon animation - only for homepage button */
+.btn-neon {
+    position: relative;
+    /* Needed for pseudo-elements */
+    background: #000;
+    /* Black background */
+    border: 2px solid #007bff;
+    /* Blue border */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    /* Glow effect */
+    overflow: visible;
+    /* Shows pseudo-elements outside */
+    z-index: 1;
+    /* Stacking order */
+}
+
+/* Creates pulsing rings around button */
+.btn-neon::before,
+.btn-neon::after {
+    content: "";
+    /* Empty content */
+    position: absolute;
+    /* Positioned absolutely */
+    inset: -4px;
+    /* 4px outside button */
+    border: 2px solid #007bff;
+    /* Blue border */
+    border-radius: 5px;
+    /* Rounded corners */
+    animation: pulseOut 2s ease-out infinite;
+    /* Animation */
+    opacity: 0;
+    /* Starts invisible */
+    pointer-events: none;
+    /* Doesn't interfere with clicks */
+}
+
+/* Second ring delayed by 1 second */
+.btn-neon::after {
+    animation-delay: 1s;
+}
+
+/* Keyframe animation for pulsing effect */
+@keyframes pulseOut {
+    0% {
+        transform: scale(1);
+        /* Starts at normal size */
+        opacity: 1;
+        /* Fully visible */
+    }
+
+    100% {
+        transform: scale(1.5);
+        /* Grows to 1.5x size */
+        opacity: 0;
+        /* Fades out */
+    }
+}
+
+/* Neon button hover effect */
+.btn-neon:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.4);
+    /* Stronger glow */
+    transform: translateY(-2px);
+    /* Moves up */
+}
+
+/* Features section heading */
+.features h3 {
+    font-size: 2.2rem;
+    /* Large font */
+    color: var(--dark-color);
+    /* Dark color */
+    text-align: center;
+    /* Centered */
+    font-family: 'Oswald', sans-serif;
+    /* Heading font */
+    font-weight: 700;
+    /* Bold */
+    letter-spacing: 0.5px;
+    /* Letter spacing */
+}
+
+/* Features grid - displays feature cards */
+.feature-grid {
+    display: grid;
+    /* Uses CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Responsive columns */
+    gap: 30px;
+    /* Space between cards */
+    margin-top: 30px;
+    /* Space above grid */
+}
+
+/* Individual feature card */
+.feature {
+    background: white;
+    /* White background */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Smooth animation */
+}
+
+/* Feature card hover effect */
+.feature:hover {
+    transform: translateY(-8px);
+    /* Moves up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Larger shadow */
+}
+
+/* Feature card image */
+.feature img {
+    width: 100%;
+    /* Full width */
+    height: 220px;
+    /* Fixed height */
+    object-fit: cover;
+    /* Covers area without distortion */
+    object-position: center top;
+    /* Positioned at top */
+    border-radius: 10px 10px 0 0;
+    /* Rounded top corners only */
+}
+
+/* Feature card content area */
+.feature-content {
+    padding: 35px 25px;
+    /* Padding inside content */
+}
+
+/* Feature card title */
+.feature h4 {
+    color: var(--primary-color);
+    /* Blue color */
+    margin-bottom: 12px;
+    /* Space below */
+    font-size: 1.3rem;
+    /* Medium-large font */
+}
+
+/* Feature card description */
+.feature p {
+    color: var(--secondary-color);
+    /* Gray color */
+    line-height: 1.6;
+    /* Line height for readability */
+}
+
+/* Forms - All form styling */
+form {
+    background: white;
+    /* White background */
+    padding: 30px;
+    /* Padding inside form */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Form labels */
+form label {
+    font-weight: bold;
+    /* Bold text */
+    color: var(--dark-color);
+    /* Dark color */
+    display: block;
+    /* Takes full width */
+    margin-bottom: 8px;
+    /* Space below */
+}
+
+/* Form input fields */
+form input[type="text"],
+form input[type="date"],
+form textarea,
+.exercise-details select {
+    width: 100%;
+    /* Full width */
+    padding: 10px;
+    /* Padding inside */
+    border: 1px solid #ddd;
+    /* Light gray border */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 1rem;
+    /* Normal font size */
+}
+
+/* Textarea specific styling */
+form textarea {
+    resize: vertical;
+    /* Only allows vertical resizing */
+}
+
+/* Fieldset - groups related form fields */
+fieldset {
+    border: 1px solid #ddd;
+    /* Light gray border */
+    padding: 20px;
+    /* Padding inside */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+/* Legend - title for fieldset */
+legend {
+    font-weight: bold;
+    /* Bold text */
+    color: var(--dark-color);
+    /* Dark color */
+    padding: 0 10px;
+    /* Horizontal padding */
+    font-family: 'Oswald', sans-serif;
+    /* Heading font */
+}
+
+/* Muscle grid */
+.muscle-grid {
+    display: grid;
+    /* Uses CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* Responsive grid */
+    gap: 15px;
+    /* Space between items */
+    margin-top: 15px;
+    /* Space above */
+}
+
+/* Labels in muscle grid */
+.muscle-grid label {
+    display: flex;
+    /* Uses flexbox */
+    align-items: center;
+    /* Vertically centers */
+    gap: 8px;
+    /* Space between checkbox and text */
+    font-weight: normal;
+    /* Normal weight (not bold) */
+}
+
+/* Workout cards - header row with title and button */
+.header-row {
+    display: flex;
+    /* Uses flexbox */
+    justify-content: space-between;
+    /* Space between items */
+    align-items: center;
+    /* Vertically centers */
+    margin-bottom: 20px;
+    /* Space below */
+}
+
+/* Workout list grid */
+.workout-list {
+    display: grid;
+    /* Uses CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Responsive grid */
+    gap: 20px;
+    /* Space between cards */
+}
+
+/* Individual workout card */
+.workout-card {
+    background: white;
+    /* White background */
+    padding: 25px;
+    /* Padding inside */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.3s;
+    /* Smooth animation */
+}
+
+/* Workout card hover effect */
+.workout-card:hover {
+    transform: translateY(-5px);
+    /* Moves up */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Larger shadow */
+}
+
+/* Workout card title */
+.workout-card h3 {
+    color: var(--dark-color);
+    /* Dark color */
+    margin-bottom: 10px;
+    /* Space below */
+}
+
+/* Workout card date */
+.workout-card .date {
+    color: var(--secondary-color);
+    /* Gray color */
+    font-size: 0.9rem;
+    /* Smaller font */
+    margin-bottom: 15px;
+    /* Space below */
+}
+
+/* Muscle tags container */
+.muscle-tags {
+    display: flex;
+    /* Uses flexbox */
+    flex-wrap: wrap;
+    /* Wraps to new line if needed */
+    gap: 8px;
+    /* Space between tags */
+    margin-bottom: 15px;
+    /* Space below */
+}
+
+/* Individual muscle tag */
+.tag {
+    background-color: var(--primary-color);
+    /* Blue background */
+    color: white;
+    /* White text */
+    padding: 5px 12px;
+    /* Padding inside tag */
+    border-radius: 15px;
+    /* Rounded pill shape */
+    font-size: 0.85rem;
+    /* Small font */
+}
+
+/* Action buttons in cards */
+.card-actions,
+.detail-actions {
+    display: flex;
+    /* Uses flexbox */
+    gap: 10px;
+    /* Space between buttons */
+}
+
+/* Detail page actions */
+.detail-actions {
+    margin-top: 30px;
+    /* Space above */
+}
+
+/* Back link on detail pages */
+.back-link {
+    color: var(--primary-color);
+    /* Blue color */
+    text-decoration: none;
+    /* No underline */
+    font-weight: bold;
+    /* Bold text */
+}
+
+/* Back link hover */
+.back-link:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Detail card - workout detail page */
+.detail-card {
+    background: white;
+    /* White background */
+    padding: 30px;
+    /* Padding inside */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Headings in detail card */
+.detail-card h3 {
+    color: var(--dark-color);
+    /* Dark color */
+    margin-top: 20px;
+    /* Space above */
+    margin-bottom: 15px;
+    /* Space below */
+}
+
+/* Notes section */
+.notes {
+    background-color: var(--light-bg);
+    /* Light gray background */
+    padding: 15px;
+    /* Padding inside */
+    border-radius: 5px;
+    /* Rounded corners */
+    border-left: 4px solid var(--primary-color);
+    /* Blue left border */
+}
+
+/* Stats - Statistics page styling */
+.stats-summary {
+    display: grid;
+    /* Uses CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Responsive grid */
+    gap: 20px;
+    /* Space between boxes */
+    margin-bottom: 30px;
+    /* Space below */
+}
+
+/* Individual stat box */
+.stat-box {
+    background: white;
+    /* White background */
+    padding: 30px;
+    /* Padding inside */
+    border-radius: 10px;
+    /* Rounded corners */
+    text-align: center;
+    /* Centers text */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Large number in stat box */
+.stat-box h3 {
+    color: var(--primary-color);
+    /* Blue color */
+    font-size: 2.5rem;
+    /* Very large font */
+    margin-bottom: 10px;
+    /* Space below */
+}
+
+/* Description in stat box */
+.stat-box p {
+    color: var(--secondary-color);
+    /* Gray color */
+    margin: 0;
+    /* No margin */
+}
+
+/* Stats list container */
+.stats-list {
+    background: white;
+    /* White background */
+    padding: 30px;
+    /* Padding inside */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Individual stat row */
+.stat-row {
+    display: flex;
+    /* Uses flexbox */
+    justify-content: space-between;
+    /* Space between label and count */
+    padding: 15px 0;
+    /* Vertical padding */
+    border-bottom: 1px solid #eee;
+    /* Light bottom border */
+}
+
+/* Remove border from last stat row */
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+/* Muscle name in stats */
+.muscle-name {
+    font-weight: bold;
+    /* Bold text */
+    color: var(--dark-color);
+    /* Dark color */
+}
+
+/* Muscle count in stats */
+.muscle-count {
+    color: var(--primary-color);
+    /* Blue color */
+    font-weight: bold;
+    /* Bold text */
+}
+
+/* Empty message - shown when no workouts exist */
+.empty-message {
+    text-align: center;
+    /* Centers text */
+    padding: 60px 20px;
+    /* Large padding */
+    background: white;
+    /* White background */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Footer - Bottom of page */
+footer {
+    background-color: var(--dark-color);
+    /* Black background */
+    color: white;
+    /* White text */
+    text-align: center;
+    /* Centers text */
+    padding: 20px 0;
+    /* Vertical padding */
+    margin-top: 50px;
+    /* Space above */
+}
+
+/* Footer paragraph */
+footer p {
+    margin: 0;
+    /* No margin */
+}
+
+/* Muscle sections on detail page */
+.muscle-section {
+    background-color: var(--light-bg);
+    /* Light gray background */
+    padding: 20px;
+    /* Padding inside */
+    border-radius: 8px;
+    /* Rounded corners */
+    margin-bottom: 20px;
+    /* Space below */
+}
+
+/* Muscle section heading */
+.muscle-section h4 {
+    color: var(--primary-color);
+    /* Blue color */
+    margin-bottom: 10px;
+    /* Space below */
+}
+
+/* Exercise table */
+.exercise-table {
+    width: 100%;
+    /* Full width */
+    border-collapse: collapse;
+    /* Removes spacing between cells */
+    margin-top: 10px;
+    /* Space above */
+}
+
+/* Table header */
+.exercise-table thead {
+    background-color: var(--primary-color);
+    /* Blue background */
+    color: white;
+    /* White text */
+}
+
+/* Table cells */
+.exercise-table th,
+.exercise-table td {
+    padding: 12px;
+    /* Padding inside cells */
+    text-align: left;
+    /* Left-aligned text */
+    border-bottom: 1px solid #ddd;
+    /* Bottom border */
+}
+
+/* Exercise items list */
+.exercise-list-detailed {
+    display: flex;
+    /* Uses flexbox */
+    flex-direction: column;
+    /* Stacks items vertically */
+    gap: 15px;
+    /* Space between items */
+}
+
+/* Individual exercise item */
+.exercise-item {
+    background-color: var(--light-bg);
+    /* Light gray background */
+    padding: 15px;
+    /* Padding inside */
+    border-radius: 8px;
+    /* Rounded corners */
+}
+
+/* Exercise checkbox label */
+.exercise-checkbox {
+    display: flex;
+    /* Uses flexbox */
+    align-items: center;
+    /* Vertically centers */
+    gap: 10px;
+    /* Space between checkbox and label */
+    font-weight: normal;
+    /* Normal weight */
+    cursor: pointer;
+    /* Pointer cursor */
+}
+
+/* Exercise details (sets, reps, weight) */
+.exercise-details {
+    margin-top: 10px;
+    /* Space above */
+    padding-left: 30px;
+    /* Left padding for indentation */
+    display: flex;
+    /* Uses flexbox */
+    gap: 15px;
+    /* Space between fields */
+    align-items: center;
+    /* Vertically centers */
+}
+
+/* Labels in exercise details */
+.exercise-details label {
+    font-weight: bold;
+    /* Bold text */
+    margin-right: 5px;
+    /* Space to the right */
+}
+
+/* Responsive - Mobile styles */
+@media (max-width: 768px) {
+
+    /* Container padding on mobile */
+    .container {
+        padding: 0 15px;
+        /* Less padding on mobile */
+    }
+
+    /* Show burger menu on mobile */
+    .burger-menu {
+        display: flex;
+        /* Shows burger menu */
+    }
+
+    .hero {
+        background-size: cover;
+        /* ← SEULEMENT sur mobile */
+        background-position: center center;
+        padding: 80px 20px;
+    }
+
+    /* Keep navigation container in row for logo and burger side by side */
+    nav .container {
+        flex-direction: row;
+        /* Important: keeps logo and burger horizontal */
+    }
+
+    /* Hide navigation menu by default on mobile */
+    nav ul,
+    .mobile-menu {
+        position: fixed;
+        /* Fixed positioning */
+        right: -100%;
+        /* Hidden off-screen to the right */
+        top: 70px;
+        /* Below the nav bar */
+        flex-direction: column;
+        /* Stacks items vertically */
+        background-color: #1a1a1a;
+        /* Dark background */
+        width: 100%;
+        /* Full width */
+        text-align: center;
+        /* Centers text */
+        transition: right 0.3s ease;
+        /* Smooth slide animation */
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.8);
+        /* Shadow */
+        z-index: 999;
+        /* High stacking order */
+        list-style: none;
+        /* No list bullets */
+        padding: 0;
+        /* No padding */
+        margin: 0;
+        /* No margin */
+    }
+
+    /* Menu shown when active */
+    nav ul.active,
+    .mobile-menu.active {
+        right: 0;
+        /* Slides in from right */
+    }
+
+    /* Navigation items full width on mobile */
+    nav ul li {
+        width: 100%;
+        /* Full width */
+    }
+
+    /* Navigation links full width and centered */
+    nav ul a {
+        width: 100%;
+        /* Full width */
+        padding: 20px;
+        /* Padding inside */
+        display: block;
+        /* Block display */
+    }
+
+    /* Hide animated underline on mobile */
+    nav ul a::after {
+        display: none;
+        /* Hides the underline animation */
+    }
+
+    /* Mobile nav link hover effect */
+    nav ul a:hover,
+    nav ul a.active {
+        background-color: rgba(0, 123, 255, 0.1);
+        /* Light blue background */
+    }
+
+    /* Header row stacks vertically on mobile */
+    .header-row {
+        flex-direction: column;
+        /* Stacks items vertically */
+        gap: 15px;
+        /* Space between items */
+        align-items: flex-start;
+        /* Aligns to left */
+    }
+
+    /* Smaller hero heading on mobile */
+    .hero h2 {
+        font-size: 1.8rem;
+        /* Smaller font size */
+    }
+}

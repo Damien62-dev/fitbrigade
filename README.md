@@ -1,10 +1,10 @@
-# FitGribade 🏋️
+# FitBrigade 🏋️
 
 A simple workout tracking web application built with Flask.
 
 ## About
 
-FitGribade is a workout tracking application that allows users to create, view, and manage their fitness workouts. The application helps users track exercises by muscle group, monitor their training progress, and view statistics about their workout history.
+FitBrigade is a workout tracking application that allows users to create, view, and manage their fitness workouts. The application helps users track exercises by muscle group, monitor their training progress, and view statistics about their workout history.
 
 ## Features
 
@@ -54,7 +54,7 @@ FitGribade is a workout tracking application that allows users to create, view, 
 ## Project Structure
 
 ```
-FitGribade/
+FitBrigade/
 ├── app.py                  # Main Flask application
 ├── workouts.json          # Workout data storage
 ├── static/

@@ -2,6 +2,11 @@
 
 A simple workout tracking web application built with Flask.
 
+## 🔗 Links
+
+- **Live Demo:** https://fitbrigade.onrender.com/
+- **GitHub Repository:** https://github.com/Damien62-dev/fitbrigade
+
 ## About
 
 FitBrigade is a workout tracking application that allows users to create, view, and manage their fitness workouts. The application helps users track exercises by muscle group, monitor their training progress, and view statistics about their workout history.

@@ -69,3 +69,4 @@ for (let i = 0; i < navLinks.length; i = i + 1) {
         burgerMenu.classList.remove('active');
     });
 }
+

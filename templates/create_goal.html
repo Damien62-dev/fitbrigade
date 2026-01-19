@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Create Goal - FitBrigade{% endblock %}
+
+{% block content %}
+<h2>Create New Goal</h2>
+<br>
+<form method="POST" action="/create_goal" id="goalForm">
+    <label for="name">Goal Name</label>
+    <input type="text" id="name" name="name" required placeholder="e.g., Squat 100kg">
+    <br><br>
+
+    <label for="deadline">Deadline</label>
+    <input type="date" id="deadline" name="deadline">
+    <br><br>
+
+    <label for="exercise">Exercise</label>
+    <select id="exercise" name="exercise" required>
+        <option value="">-- Select an exercise --</option>
+        {% for muscle, exercise_list in all_exercises.items() %}
+        <optgroup label="{{ muscle }}">
+            {% for exercise in exercise_list %}
+            <option value="{{ exercise.id }}">{{ exercise.name }}</option>
+            {% endfor %}
+        </optgroup>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label for="target_weight">Target Weight (kg)</label>
+    <input type="number" id="target_weight" name="target_weight" step="0.5" placeholder="e.g., 100">
+    <br><br>
+
+    <label for="target_reps">Target Reps</label>
+    <input type="number" id="target_reps" name="target_reps" min="1" placeholder="e.g., 5">
+    <br><br>
+
+    <label for="notes">Notes (optional)</label><br>
+    <textarea id="notes" name="notes" rows="4" placeholder="Add any notes about this goal..."></textarea>
+    <br><br>
+
+    <button type="submit" class="btn-primary">Save Goal</button>
+</form>
+{% endblock %}

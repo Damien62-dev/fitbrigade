@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Create New Workout</h2>
 <br>
-<form method="POST" action="/create" id="workoutForm">
+<form method="POST" action="/create_workout" id="workoutForm">
     <label for="name">Workout Name</label>
     <input type="text" id="name" name="name" required placeholder="e.g., Leg Day">
     <br><br>
@@ -83,13 +83,13 @@
                 {% for exercise in exercise_list %}
                 <div class="exercise-item">
                     <label class="exercise-checkbox">
-                        <input type="checkbox" name="exercises_{{ muscle }}" value="{{ exercise }}"
-                            onchange="toggleExerciseDetails('{{ muscle }}', '{{ exercise }}', event)">
-                        <strong>{{ exercise }}</strong>
+                        <input type="checkbox" name="exercises_{{ muscle }}" value="{{ exercise.name }}"
+                            onchange="toggleExerciseDetails('{{ muscle }}', '{{ exercise.name }}', event)">
+                        <strong>{{ exercise.name }}</strong>
                     </label>
-                    <div id="details_{{ muscle }}_{{ exercise }}" class="exercise-details" style="display: none;">
-                        <label for="sets_{{ muscle }}_{{ exercise }}">Sets:</label>
-                        <select name="sets_{{ muscle }}_{{ exercise }}" id="sets_{{ muscle }}_{{ exercise }}">
+                    <div id="details_{{ muscle }}_{{ exercise.name }}" class="exercise-details" style="display: none;">
+                        <label for="sets_{{ muscle }}_{{ exercise.name }}">Sets:</label>
+                        <select name="sets_{{ muscle }}_{{ exercise.name }}" id="sets_{{ muscle }}_{{ exercise.name }}">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3" selected>3</option>
@@ -97,8 +97,8 @@
                             <option value="5">5</option>
                         </select>
 
-                        <label for="reps_{{ muscle }}_{{ exercise }}">Reps:</label>
-                        <select name="reps_{{ muscle }}_{{ exercise }}" id="reps_{{ muscle }}_{{ exercise }}">
+                        <label for="reps_{{ muscle }}_{{ exercise.name }}">Reps:</label>
+                        <select name="reps_{{ muscle }}_{{ exercise.name }}" id="reps_{{ muscle }}_{{ exercise.name }}">
                             <option value="1-3">1-3</option>
                             <option value="4-6">4-6</option>
                             <option value="6-8">6-8</option>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}My Goals - FitBrigade{% endblock %}
+
+{% block content %}
+<div class="header-row">
+    <h2>My Goals</h2>
+    <a href="/create_goal" class="btn-primary">Create New Goal</a>
+</div>
+<br>
+
+{% if goals %}
+<div class="workout-list">
+    {% for goal in goals %}
+    <div class="workout-card">
+        <h3>{{ goal.name }}</h3>
+        <p class="date">Deadline: {{ goal.deadline if goal.deadline else 'No deadline' }}</p>
+        <div class="muscle-tags">
+            <span class="tag">{{ goal.exercise.name }}</span>
+            {% if goal.target_weight %}
+            <span class="tag">{{ goal.target_weight }}kg</span>
+            {% endif %}
+            {% if goal.target_reps %}
+            <span class="tag">{{ goal.target_reps }} reps</span>
+            {% endif %}
+        </div>
+        <div class="card-actions">
+            <a href="/goal/{{ goal.id }}" class="btn-secondary">View Details</a>
+            <a href="/delete_goal/{{ goal.id }}" class="btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="empty-message">
+    <p>No goals yet. Start by creating your first goal!</p>
+    <br>
+    <a href="/create_goal" class="btn-primary">Create Goal</a>
+</div>
+
+{% endif %}
+{% endblock %}
